@@ -121,7 +121,7 @@ export const CmpTravelAgentQuiz = () => {
   const isCorrect = selected === question?.correct;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-100 to-teal-300 px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 px-4 py-8">
       <div className="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-6 md:p-10 space-y-6">
       <a onClick={handleMenu} className="cursor-grab font-bold">Back to Menu</a>
         <div className="flex flex-col items-center space-y-2">
