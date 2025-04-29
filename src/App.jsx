@@ -12,7 +12,7 @@ function App() {
     <>
        <BrowserRouter>
         <Routes>
-          <Route exact path="/TourXpert" element={<Homepage />} />
+          <Route exact path="/" element={<Homepage />} />
           <Route exact path="/character" element={<ComponentCharacter />} />
           <Route exact path="/tourguide" element={<CmpTourGuides />} />
           <Route exact path="/travelagent" element={<CmpTravelAgentQuiz />} />
