@@ -532,7 +532,7 @@ export const CmpTravelAgentQuiz = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 px-4 py-8">
       <div className="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-6 md:p-10 space-y-6">
-        <a onClick={handleMenu} className="cursor-pointer font-bold text-teal-700">
+        <a onClick={handleMenu} className="cursor-pointer font-bold text-blue-700">
           Back to Menu
         </a>
 
@@ -540,7 +540,7 @@ export const CmpTravelAgentQuiz = () => {
           <img src={image || "/placeholder.svg"} alt="Travel Agent" className="h-32 w-auto rounded-lg shadow-md" />
         </div>
 
-        <h1 className="text-3xl font-extrabold text-teal-800 text-center mb-4">Travel Agent Quiz</h1>
+        <h1 className="text-3xl font-extrabold text-blue-800 text-center mb-4">Travel Agent Quiz</h1>
 
         {finished ? (
           <div className="text-center space-y-4">
@@ -558,7 +558,7 @@ export const CmpTravelAgentQuiz = () => {
             </p>
             <button
               onClick={restartQuiz}
-              className="mt-4 px-6 py-2 bg-teal-700 text-white rounded-xl hover:bg-teal-600 transition"
+              className="mt-4 px-6 py-2 bg-blue-700 text-white rounded-xl hover:bg-blue-600 transition"
             >
               Restart Quiz
             </button>
@@ -571,10 +571,10 @@ export const CmpTravelAgentQuiz = () => {
           </div>
         ) : levelCompleted ? (
           <div className="text-center space-y-4">
-            <h2 className="text-2xl font-bold text-teal-800">Level {levelIndex + 1} Completed!</h2>
-            <div className="bg-teal-50 rounded-xl p-6 my-4">
+            <h2 className="text-2xl font-bold text-blue-800">Level {levelIndex + 1} Completed!</h2>
+            <div className="bg-blue-50 rounded-xl p-6 my-4">
               <p className="text-lg font-semibold">Your score for this level:</p>
-              <p className="text-3xl font-bold text-teal-700 my-2">
+              <p className="text-3xl font-bold text-blue-700 my-2">
                 {levelScore} / {currentLevel.questions.length}
               </p>
               <p className="text-sm text-gray-600 italic">
@@ -597,12 +597,12 @@ export const CmpTravelAgentQuiz = () => {
               {levelIndex < levelData.length - 1 ? (
                 <button
                   onClick={continueToNextLevel}
-                  className="px-6 py-2 bg-teal-700 text-white rounded-xl hover:bg-teal-600 transition"
+                  className="px-6 py-2 bg-blue-700 text-white rounded-xl hover:bg-blue-600 transition"
                 >
                   Continue to Next Level
                 </button>
               ) : (
-                <div className="px-6 py-2 bg-teal-200 text-teal-800 rounded-xl border border-teal-300">
+                <div className="px-6 py-2 bg-blue-200 text-blue-800 rounded-xl border border-blue-300">
                   Coming Soon: Extreme Level 🔥
                 </div>
               )}
@@ -610,19 +610,19 @@ export const CmpTravelAgentQuiz = () => {
           </div>
         ) : showIntro ? (
           <div className="text-center space-y-4">
-            <h2 className="text-2xl font-bold text-teal-800">{currentLevel.title}</h2>
+            <h2 className="text-2xl font-bold text-blue-800">{currentLevel.title}</h2>
             <p className="text-lg italic text-gray-700">"{currentLevel.intro}"</p>
             <p className="text-sm text-gray-600">{currentLevel.desc}</p>
             <button
               onClick={() => setShowIntro(false)}
-              className="mt-4 px-6 py-2 bg-teal-700 text-white rounded-xl hover:bg-teal-600 transition"
+              className="mt-4 px-6 py-2 bg-blue-700 text-white rounded-xl hover:bg-blue-600 transition"
             >
               Continue
             </button>
           </div>
         ) : (
           <>
-            <div className="text-sm text-teal-600 font-semibold">{question.level}</div>
+            <div className="text-sm text-blue-600 font-semibold">{question.level}</div>
             <h2 className="text-lg font-bold text-gray-800">{question.question}</h2>
             <div className="space-y-3">
               {question.options.map((opt, idx) => (
@@ -636,7 +636,7 @@ export const CmpTravelAgentQuiz = () => {
                         : idx === selected
                           ? "bg-red-100 border-red-600 text-red-800"
                           : "bg-gray-50 text-gray-700"
-                      : "hover:bg-teal-100 border-teal-200"
+                      : "hover:bg-blue-100 border-blue-200"
                   }`}
                   disabled={showAnswer}
                 >
@@ -646,7 +646,7 @@ export const CmpTravelAgentQuiz = () => {
             </div>
 
             {showAnswer && (
-              <div className="mt-4 p-4 bg-teal-50 border-l-4 border-teal-500 text-teal-700 rounded-lg">
+              <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-700 rounded-lg">
                 <p className="font-semibold">{isCorrect ? "✅ Correct!" : "❌ Incorrect"}</p>
                 <p className="mt-1 text-sm">{question.explanation}</p>
               </div>
@@ -656,7 +656,7 @@ export const CmpTravelAgentQuiz = () => {
               <div className="text-right">
                 <button
                   onClick={nextQuestion}
-                  className="mt-4 px-5 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-600 transition"
+                  className="mt-4 px-5 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition"
                 >
                   Next
                 </button>
