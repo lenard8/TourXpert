@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { BrowserRouter , Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./Components/Home";
 import { ComponentCharacter } from './Components/ComponentCharacter';
 import { CmpTourGuides } from './Components/CmpTourGuides';
@@ -9,20 +8,18 @@ import { CmpFlightAttendantQuiz } from './Components/CmpFlightAttendantQuiz';
 
 function App() {
   return (
-    <>
-       <BrowserRouter>
-        <Routes>
-{/*           <Route exact path="/" element={<Homepage />} /> */}
-          <Route exact path="/character" element={<ComponentCharacter />} />
-          <Route exact path="/tourguide" element={<CmpTourGuides />} />
-          <Route exact path="/travelagent" element={<CmpTravelAgentQuiz />} />
-          <Route exact path="/hotelstaff" element={<CmpHotelStaffQuiz />} />
-          <Route exact path="/flightattendant" element={<CmpFlightAttendantQuiz />} />
-        </Routes>
-      </BrowserRouter>
-      
-    </>
-  )
+    <BrowserRouter basename="/TourXpert"> 
+      <Routes>
+        <Route path="/" element={<Homepage />} /> {/* No need for exact */}
+        <Route path="/character" element={<ComponentCharacter />} />
+        <Route path="/tourguide" element={<CmpTourGuides />} />
+        <Route path="/travelagent" element={<CmpTravelAgentQuiz />} />
+        <Route path="/hotelstaff" element={<CmpHotelStaffQuiz />} />
+        <Route path="/flightattendant" element={<CmpFlightAttendantQuiz />} />
+      </Routes>
+    </BrowserRouter>
+  );
+
 }
 
-export default App
+export default App;
