@@ -412,6 +412,13 @@ export const CmpFlightAttendantQuiz = () => {
   const [showAnswer, setShowAnswer] = useState(false)
   const [score, setScore] = useState(0)
   const [finished, setFinished] = useState(false)
+  const [levelCompleted, setLevelCompleted] = useState(false)
+  const [levelScore, setLevelScore] = useState(0)
+  const [levelScoreTracker, setLevelScoreTracker] = useState({
+    0: {}, // Easy level scores
+    1: {}, // Average level scores
+    2: {}, // Hard level scores
+  })
 
   const currentLevel = levelData[levelIndex]
   const question = currentLevel.questions[currentQ]
@@ -425,8 +432,29 @@ export const CmpFlightAttendantQuiz = () => {
     if (showAnswer) return
     setSelected(index)
     setShowAnswer(true)
-    if (index === question.correct) {
+
+    const isAnswerCorrect = index === question.correct
+
+    if (isAnswerCorrect) {
       setScore((prev) => prev + 1)
+
+      // Track this question as correct for the current level
+      setLevelScoreTracker((prev) => ({
+        ...prev,
+        [levelIndex]: {
+          ...prev[levelIndex],
+          [currentQ]: true,
+        },
+      }))
+    } else {
+      // Track this question as incorrect for the current level
+      setLevelScoreTracker((prev) => ({
+        ...prev,
+        [levelIndex]: {
+          ...prev[levelIndex],
+          [currentQ]: false,
+        },
+      }))
     }
   }
 
@@ -436,16 +464,15 @@ export const CmpFlightAttendantQuiz = () => {
       setSelected(null)
       setShowAnswer(false)
     } else {
-      // Done with this level
-      if (levelIndex < levelData.length - 1) {
-        setLevelIndex((prev) => prev + 1)
-        setShowIntro(true)
-        setCurrentQ(0)
-        setSelected(null)
-        setShowAnswer(false)
-      } else {
-        setFinished(true)
-      }
+      // Level completed
+      setLevelCompleted(true)
+      setLevelScore(
+        currentLevel.questions.reduce((count, _, i) => {
+          const questionIndex = i
+          const questionState = levelScoreTracker[levelIndex]?.[questionIndex] || false
+          return count + (questionState ? 1 : 0)
+        }, 0),
+      )
     }
   }
 
@@ -457,6 +484,29 @@ export const CmpFlightAttendantQuiz = () => {
     setShowAnswer(false)
     setScore(0)
     setFinished(false)
+    setLevelCompleted(false)
+    setLevelScoreTracker({
+      0: {}, // Easy level scores
+      1: {}, // Average level scores
+      2: {}, // Hard level scores
+    })
+  }
+
+  const continueToNextLevel = () => {
+    if (levelIndex < levelData.length - 1) {
+      setLevelIndex((prev) => prev + 1)
+      setShowIntro(true)
+      setCurrentQ(0)
+      setSelected(null)
+      setShowAnswer(false)
+      setLevelCompleted(false)
+    } else {
+      setFinished(true)
+    }
+  }
+
+  const goToMenu = () => {
+    navigate("../character")
   }
 
   return (
@@ -498,6 +548,45 @@ export const CmpFlightAttendantQuiz = () => {
             >
               Main Menu
             </button>
+          </div>
+        ) : levelCompleted ? (
+          <div className="text-center space-y-4">
+            <h2 className="text-2xl font-bold text-blue-800">Level {levelIndex + 1} Completed!</h2>
+            <div className="bg-blue-50 rounded-xl p-6 my-4">
+              <p className="text-lg font-semibold">Your score for this level:</p>
+              <p className="text-3xl font-bold text-blue-700 my-2">
+                {levelScore} / {currentLevel.questions.length}
+              </p>
+              <p className="text-sm text-gray-600 italic">
+                {levelScore === currentLevel.questions.length
+                  ? "Perfect! You mastered this level! 🌟"
+                  : levelScore >= currentLevel.questions.length * 0.7
+                    ? "Great job! You're doing well! 👏"
+                    : "Keep practicing to improve! 💪"}
+              </p>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-6">
+              <button
+                onClick={goToMenu}
+                className="px-6 py-2 bg-gray-500 text-white rounded-xl hover:bg-gray-400 transition"
+              >
+                Go Back to Menu
+              </button>
+
+              {levelIndex < levelData.length - 1 ? (
+                <button
+                  onClick={continueToNextLevel}
+                  className="px-6 py-2 bg-blue-700 text-white rounded-xl hover:bg-blue-600 transition"
+                >
+                  Continue to Next Level
+                </button>
+              ) : (
+                <div className="px-6 py-2 bg-blue-200 text-blue-800 rounded-xl border border-blue-300">
+                  Coming Soon: Extreme Level 🔥
+                </div>
+              )}
+            </div>
           </div>
         ) : showIntro ? (
           <div className="text-center space-y-4">
