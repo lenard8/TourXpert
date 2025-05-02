@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter basename="/"> 
       <Routes>
-        <Route path="/TourXpert" element={<Homepage />} /> 
+        <Route path="/" element={<Homepage />} /> 
         <Route path="/character" element={<ComponentCharacter />} />
         <Route path="/tourguide" element={<CmpTourGuides />} />
         <Route path="/travelagent" element={<CmpTravelAgentQuiz />} />
