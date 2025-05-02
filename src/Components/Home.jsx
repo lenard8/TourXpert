@@ -30,7 +30,7 @@ export default function Home() {
           className="mt-4 py-3 px-8 mb-36 bg-blue-900 text-white text-lg rounded-full hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-md"
           onClick={handleStartClick}
         >
-          Play Quiz
+          Play Game
         </button>
         
       </div>
