@@ -10,7 +10,8 @@ function App() {
   return (
     <BrowserRouter basename="/TourXpert"> 
       <Routes>
-        <Route path="/" element={<Homepage />} /> {/* No need for exact */}
+        <Route path="/" element={<Homepage />} /> 
+        <Route path="/TourXpert" element={<Homepage />} /> 
         <Route path="/character" element={<ComponentCharacter />} />
         <Route path="/tourguide" element={<CmpTourGuides />} />
         <Route path="/travelagent" element={<CmpTravelAgentQuiz />} />
