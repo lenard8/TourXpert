@@ -8,9 +8,9 @@ import { CmpFlightAttendantQuiz } from './Components/CmpFlightAttendantQuiz';
 
 function App() {
   return (
-    <BrowserRouter basename="/TourXpert"> 
+    <BrowserRouter basename="/"> 
       <Routes>
-        <Route path="/" element={<Homepage />} /> 
+        <Route path="/TourXpert" element={<Homepage />} /> 
         <Route path="/character" element={<ComponentCharacter />} />
         <Route path="/tourguide" element={<CmpTourGuides />} />
         <Route path="/travelagent" element={<CmpTravelAgentQuiz />} />
